@@ -1,0 +1,37 @@
+export const menuData = {
+  fresh_juices: [
+    {
+      id: 'pomegranate',
+      nameKey: 'pomegranate',
+      descriptionKey: 'pomegranateDesc',
+      prices: { small: 1.250, large: 2.000 },
+      image: 'https://example.com/pomegranate.jpg'
+    },
+    {
+      id: 'orange',
+      nameKey: 'orange',
+      descriptionKey: 'orangeDesc',
+      prices: { small: 1.000, large: 1.250 },
+      image: 'https://example.com/orange.jpg'
+    },
+    {
+      id: 'mango',
+      nameKey: 'mango',
+      descriptionKey: 'mangoDesc',
+      prices: { small: 1.000, large: 1.500 },
+      image: 'https://example.com/mango.jpg'
+    },
+    // Add more items based on your menu
+  ],
+  mixtures: [
+    {
+      id: 'mix_salsabeel',
+      nameKey: 'mixSalsabeel',
+      descriptionKey: 'mixSalsabeelDesc',
+      prices: { small: 1.500, large: 2.000 },
+      image: 'https://example.com/mix_salsabeel.jpg'
+    },
+    // Add more mixture items
+  ],
+  // Add other categories
+};
