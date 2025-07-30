@@ -1,0 +1,82 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {
+          welcome: 'Welcome to',
+          customerName: 'Customer Name',
+          mobileNumber: 'Mobile Number',
+          tableNumber: 'Table Number',
+          startOrder: 'Start Order',
+          error: 'Error',
+          fillAllFields: 'Please fill all fields',
+          freshJuices: 'Fresh Juices',
+          mixtures: 'Mixtures',
+          fruitSalad: 'Fruit Salad',
+          iceCream: 'Ice Cream',
+          energyDrinks: 'Energy Drinks',
+          cart: 'Cart',
+          small: 'Small',
+          large: 'Large',
+          addSmall: 'Add Small',
+          addLarge: 'Add Large',
+          pomegranate: 'Pomegranate',
+          pomegranateDesc: 'Fresh pomegranate juice',
+          orange: 'Orange',
+          orangeDesc: 'Fresh orange juice',
+          mango: 'Mango',
+          mangoDesc: 'Fresh mango juice',
+          mixSalsabeel: 'Mix Salsabeel',
+          mixSalsabeelDesc: 'Special house mix',
+          proceedToPayment: 'Proceed to Payment',
+          scanQRCode: 'Scan QR Code to Pay',
+          orderConfirmed: 'Order Confirmed',
+          thankYou: 'Thank you for your order!'
+        }
+      },
+      ar: {
+        translation: {
+          welcome: 'مرحباً بكم في',
+          customerName: 'اسم العميل',
+          mobileNumber: 'رقم الجوال',
+          tableNumber: 'رقم الطاولة',
+          startOrder: 'ابدأ الطلب',
+          error: 'خطأ',
+          fillAllFields: 'يرجى ملء جميع الحقول',
+          freshJuices: 'عصائر طازجة',
+          mixtures: 'خلطات',
+          fruitSalad: 'سلطة فواكه',
+          iceCream: 'آيس كريم',
+          energyDrinks: 'مشروبات الطاقة',
+          cart: 'السلة',
+          small: 'صغير',
+          large: 'كبير',
+          addSmall: 'إضافة صغير',
+          addLarge: 'إضافة كبير',
+          pomegranate: 'رمان',
+          pomegranateDesc: 'عصير رمان طازج',
+          orange: 'برتقال',
+          orangeDesc: 'عصير برتقال طازج',
+          mango: 'مانجو',
+          mangoDesc: 'عصير مانجو طازج',
+          mixSalsabeel: 'خلطة سلسبيل',
+          mixSalsabeelDesc: 'خلطة المحل الخاصة',
+          proceedToPayment: 'المتابعة للدفع',
+          scanQRCode: 'امسح رمز QR للدفع',
+          orderConfirmed: 'تم تأكيد الطلب',
+          thankYou: 'شكراً لك على طلبك!'
+        }
+      }
+    },
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    }
+  });
+
+export default i18n;
