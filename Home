@@ -1,0 +1,161 @@
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+  Alert,
+  I18nManager
+} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export default function HomeScreen({ navigation }) {
+  const { t, i18n } = useTranslation();
+  const [customerName, setCustomerName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [tableNumber, setTableNumber] = useState('');
+
+  const toggleLanguage = async () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    await i18n.changeLanguage(newLang);
+    I18nManager.forceRTL(newLang === 'ar');
+  };
+
+  const handleStartOrder = async () => {
+    if (!customerName || !mobileNumber || !tableNumber) {
+      Alert.alert(t('error'), t('fillAllFields'));
+      return;
+    }
+
+    const customerInfo = {
+      name: customerName,
+      mobile: mobileNumber,
+      table: tableNumber,
+      orderId: `WS${Date.now()}${tableNumber}`
+    };
+
+    await AsyncStorage.setItem('customerInfo', JSON.stringify(customerInfo));
+    navigation.navigate('Menu');
+  };
+
+  return (
+    <ImageBackground 
+      source={require('../assets/juice-bg.jpg')} 
+      style={styles.container}
+    >
+      <View style={styles.overlay}>
+        <TouchableOpacity style={styles.langButton} onPress={toggleLanguage}>
+          <Text style={styles.langText}>
+            {i18n.language === 'en' ? 'العربية' : 'English'}
+          </Text>
+        </TouchableOpacity>
+
+        <Text style={styles.title}>{t('welcome')}</Text>
+        <Text style={styles.subtitle}>Waha Salsabeel</Text>
+        <Text style={styles.location}>Ar Rabiya, Kuwait</Text>
+
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            placeholder={t('customerName')}
+            value={customerName}
+            onChangeText={setCustomerName}
+            textAlign={i18n.language === 'ar' ? 'right' : 'left'}
+          />
+          
+          <TextInput
+            style={styles.input}
+            placeholder={t('mobileNumber')}
+            value={mobileNumber}
+            onChangeText={setMobileNumber}
+            keyboardType="phone-pad"
+            textAlign={i18n.language === 'ar' ? 'right' : 'left'}
+          />
+          
+          <TextInput
+            style={styles.input}
+            placeholder={t('tableNumber')}
+            value={tableNumber}
+            onChangeText={setTableNumber}
+            keyboardType="numeric"
+            textAlign={i18n.language === 'ar' ? 'right' : 'left'}
+          />
+
+          <TouchableOpacity style={styles.startButton} onPress={handleStartOrder}>
+            <Text style={styles.startButtonText}>{t('startOrder')}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    padding: 20,
+    justifyContent: 'center',
+  },
+  langButton: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    backgroundColor: '#2E8B57',
+    padding: 10,
+    borderRadius: 5,
+  },
+  langText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 24,
+    color: '#90EE90',
+    textAlign: 'center',
+    marginBottom: 5,
+  },
+  location: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 40,
+  },
+  form: {
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    padding: 20,
+    borderRadius: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    padding: 15,
+    marginBottom: 15,
+    borderRadius: 8,
+    fontSize: 16,
+  },
+  startButton: {
+    backgroundColor: '#2E8B57',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  startButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
